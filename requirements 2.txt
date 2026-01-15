@@ -1,0 +1,52 @@
+# Polymarket HFT Strategy Layer - Python Dependencies
+
+# Web3 / Blockchain
+web3>=6.15.0
+eth-account>=0.10.0
+eth-typing>=4.0.0
+
+# Polymarket SDK
+py-clob-client>=0.18.0
+
+# Data Analysis
+pandas>=2.1.0
+numpy>=1.26.0
+scipy>=1.12.0
+
+# LLM Integration (Semantic Sentinel)
+anthropic>=0.18.0
+openai>=1.12.0
+
+# HTTP / WebSocket
+aiohttp>=3.9.0
+websockets>=12.0
+httpx>=0.26.0
+
+# Async utilities
+asyncio-throttle>=1.0.0
+
+# Configuration
+python-dotenv>=1.0.0
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+
+# Logging
+structlog>=24.1.0
+rich>=13.7.0
+
+# RSS / News Parsing (Semantic Sentinel)
+feedparser>=6.0.0
+tweepy>=4.14.0
+
+# Graph operations (Correlation Scanner)
+networkx>=3.2.0
+
+# FFI with Rust
+maturin>=1.4.0
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.23.0
+
+# Monitoring
+prometheus-client>=0.19.0

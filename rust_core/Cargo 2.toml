@@ -1,0 +1,52 @@
+[package]
+name = "polymarket_muscle"
+version = "0.1.0"
+edition = "2021"
+description = "High-frequency execution layer for Polymarket arbitrage"
+
+[lib]
+name = "polymarket_muscle"
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+# Async runtime
+tokio = { version = "1.35", features = ["full", "sync", "time", "macros", "rt-multi-thread"] }
+
+# WebSocket
+tokio-tungstenite = { version = "0.21", features = ["native-tls"] }
+futures-util = "0.3"
+
+# Ethereum / Signing
+ethers = { version = "2.0", features = ["legacy", "rustls"] }
+ethers-core = "2.0"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# HTTP client
+reqwest = { version = "0.11", features = ["json", "rustls-tls"], default-features = false }
+
+# Python FFI
+pyo3 = { version = "0.20", features = ["extension-module", "abi3-py38"] }
+
+# Utilities
+thiserror = "1.0"
+anyhow = "1.0"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+dashmap = "5.5"
+parking_lot = "0.12"
+rust_decimal = { version = "1.33", features = ["serde"] }
+chrono = { version = "0.4", features = ["serde"] }
+hex = "0.4"
+sha3 = "0.10"
+petgraph = "0.6"  # For DAG operations
+
+[dev-dependencies]
+tokio-test = "0.4"
+
+[profile.release]
+lto = true
+codegen-units = 1
+opt-level = 3
