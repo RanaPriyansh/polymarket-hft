@@ -1,0 +1,9 @@
+SHADOW MODE - PERFORMANCE REPORT
+========================================
+Total Trades: 10
+Wins: 10
+Losses: 0
+Win Rate: 100.0%
+Virtual P&L: $0.60
+Gas Saved: $0.20
+Errors: 0

@@ -1,0 +1,54 @@
+# Polymarket HFT Bot - Docker Compose Configuration
+
+version: '3.8'
+
+services:
+  polymarket-hft:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: polymarket-hft-bot
+    restart: always
+
+    # Environment variables from .env file
+    env_file:
+      - .env
+
+    # Additional environment variables
+    environment:
+      - PYTHONUNBUFFERED=1
+      - TZ=UTC
+      - INSTANCE_ID=${INSTANCE_ID:-aws-prod}
+
+    # Mount logs for external access
+    volumes:
+      - ./logs:/app/logs
+      - ./KILL_SWITCH.txt:/app/KILL_SWITCH.txt:ro
+
+    # Command override for live trading
+    command: [ "--mode", "${BOT_MODE:-dry-run}" ]
+
+    # Resource limits (adjust based on instance size)
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+
+    # Logging configuration
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+    # Network settings
+    networks:
+      - polymarket-net
+
+networks:
+  polymarket-net:
+    driver: bridge
